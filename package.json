@@ -15,7 +15,13 @@
     "eslint-formatter",
     "eslintformatter"
   ],
-  "author": "Gavin Mogan <npm@gavinmogan.com>",
+  "author": {
+    "name": "Gavin Mogan",
+    "url": "https://www.gavinmogan.com"
+  },
+  "files": [
+    "index.js"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/halkeye/eslint-formatter-multiple/issues"
