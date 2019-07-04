@@ -1,5 +1,5 @@
 
-const { writeFileSync } = require('fs');
+const { existsSync, writeFileSync } = require('fs');
 const { dirname, resolve } = require('path');
 const { sync: mkdirp } = require('mkdirp');
 const { CLIEngine } = require('eslint/lib/cli-engine');
@@ -7,9 +7,26 @@ const log = require('eslint/lib/shared/logging');
 
 const engine = new CLIEngine();
 
+function findConfig () {
+  let root = resolve(process.cwd());
+  while (existsSync(root + '/package.json')) {
+    const config = require(root + '/package.json');
+    if (config['eslint-format-all']) {
+      return config['eslint-format-all'];
+    }
+    root = resolve(root + '/../');
+  }
+  return null;
+}
+
 module.exports = function (results, args) {
   const root = resolve(process.cwd());
-  const config = require(`${root}/../package.json`)['eslint-format-all'];
+  const config = findConfig();
+
+  if (!config) {
+    log.error('Unable to find a package config that has eslint-format-all');
+    return false;
+  }
 
   for (const formatterConfig of config.formatters || []) {
     const formatter = engine.getFormatter(formatterConfig.name);
