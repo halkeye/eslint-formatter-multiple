@@ -11,8 +11,8 @@ function findConfig () {
   let root = resolve(process.cwd());
   while (existsSync(root + '/package.json')) {
     const config = require(root + '/package.json');
-    if (config['eslint-format-all']) {
-      return config['eslint-format-all'];
+    if (config['eslint-formatter-multiple']) {
+      return config['eslint-formatter-multiple'];
     }
     root = resolve(root + '/../');
   }
@@ -24,7 +24,7 @@ module.exports = function (results, args) {
   const config = findConfig();
 
   if (!config) {
-    log.error('Unable to find a package config that has eslint-format-all');
+    log.error('Unable to find a package config that has eslint-formatter-multiple. See README');
     return false;
   }
 

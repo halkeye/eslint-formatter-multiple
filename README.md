@@ -1,4 +1,4 @@
-# @halkeye/eslint-format-all
+# eslint-formatter-multiple
 
 A meta formatter for eslint that will output to multiple formats
 
@@ -7,7 +7,7 @@ A meta formatter for eslint that will output to multiple formats
 Update your package.json to have a new section:
 
 ```
-  "eslint-format-all": {
+  "eslint-formatter-multiple": {
     "formatters": [
       {
         "name": "stylish",

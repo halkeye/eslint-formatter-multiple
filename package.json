@@ -1,5 +1,5 @@
 {
-  "name": "@halkeye/eslint-format-all",
+  "name": "eslint-formatter-multiple",
   "version": "1.0.0",
   "description": "Format eslint results with multiple formatters",
   "main": "index.js",
@@ -8,17 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/halkeye/eslint-format-all.git"
+    "url": "git+https://github.com/halkeye/eslint-formatter-multiple.git"
   },
   "keywords": [
-    "eslint"
+    "eslint",
+    "eslint-formatter",
+    "eslintformatter"
   ],
   "author": "Gavin Mogan <npm@gavinmogan.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/halkeye/eslint-format-all/issues"
+    "url": "https://github.com/halkeye/eslint-formatter-multiple/issues"
   },
-  "homepage": "https://github.com/halkeye/eslint-format-all#readme",
+  "homepage": "https://github.com/halkeye/eslint-formatter-multiple#readme",
   "devDependencies": {
     "eslint": "^6.0.1",
     "eslint-config-standard": "^12.0.0",
