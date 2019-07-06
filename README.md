@@ -2,7 +2,11 @@
 
 A meta formatter for eslint that will output to multiple formats
 
-# Usage
+## Install
+
+`npm install --save-dev eslint-formatter-multiple`
+
+## Usage
 
 Update your package.json to have a new section:
 
