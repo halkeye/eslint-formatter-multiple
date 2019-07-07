@@ -4,7 +4,7 @@
   "description": "Format eslint results with multiple formatters",
   "main": "index.js",
   "scripts": {
-    "test": "eslint *.js"
+    "test": "eslint *.js && node ."
   },
   "repository": {
     "type": "git",
