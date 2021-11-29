@@ -25,3 +25,5 @@ Update your package.json to have a new section:
     ]
   }
 ```
+
+Finally, add the `--format eslint-formatter-multiple` when calling the `eslint` command.
