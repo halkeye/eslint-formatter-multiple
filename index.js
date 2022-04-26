@@ -2,10 +2,9 @@
 const { existsSync, writeFileSync } = require('fs');
 const { dirname, resolve } = require('path');
 const { sync: mkdirp } = require('mkdirp');
-const { CLIEngine } = require('eslint/lib/cli-engine');
-const log = require('eslint/lib/shared/logging');
+const { ESLint } = require('eslint');
 
-const engine = new CLIEngine();
+const eslint = new ESLint();
 
 function findConfig () {
   let root = resolve(process.cwd());
@@ -19,18 +18,18 @@ function findConfig () {
   return null;
 }
 
-module.exports = function (results, args) {
+module.exports = async function (results, args) {
   const root = resolve(process.cwd());
   const config = findConfig();
 
   if (!config) {
-    log.error('Unable to find a package config that has eslint-formatter-multiple. See README');
+    console.error('Unable to find a package config that has eslint-formatter-multiple. See README');
     return false;
   }
 
   for (const formatterConfig of config.formatters || []) {
-    const formatter = engine.getFormatter(formatterConfig.name);
-    const formatterResult = formatter(results, args);
+    const formatter = await eslint.loadFormatter(formatterConfig.name);
+    const formatterResult = formatter.format(results);
     if (formatterConfig.output === 'console') {
       console.log(formatterResult);
     } else if (formatterConfig.output === 'file') {
@@ -39,7 +38,7 @@ module.exports = function (results, args) {
         mkdirp(dirname(filePath));
         writeFileSync(filePath, formatterResult);
       } catch (ex) {
-        log.error('There was a problem writing the output file:\n%s', ex);
+        console.error('There was a problem writing the output file:\n%s', ex);
 
         return false;
       }
