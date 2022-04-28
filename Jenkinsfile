@@ -4,6 +4,10 @@ pipeline {
     timeout(time: 60, unit: 'MINUTES')
     ansiColor('xterm')
   }
+  
+  environment {
+    HOME="/tmp"
+  }
 
   stages {
     stage('build') {
