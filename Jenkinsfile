@@ -12,15 +12,30 @@ pipeline {
   stages {
     stage('build') {
       parallel {
-        stage('node:10') {
-          agent { docker { image 'node:10' } }
+        stage('node:12') {
+          agent { docker { image 'node:12' } }
+          steps {
+            sh 'npm install'
+            sh 'npm run test'
+          }
+        }
+        
+        stage('node:14') {
+          agent { docker { image 'node:14' } }
           steps {
             sh 'npm install'
             sh 'npm run test'
           }
         }
 
-
+        stage('node:16') {
+          agent { docker { image 'node:16' } }
+          steps {
+            sh 'npm install'
+            sh 'npm run test'
+          }
+        }
+        
         stage('node:lts') {
           agent { docker { image 'node:lts' } }
           steps {
